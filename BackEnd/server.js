@@ -1,19 +1,20 @@
 const express = require("express");
 var mongoose = require("mongoose");
+const cors = require("cors");
 const app = express();
 
+var corsOptions = {
+    origin: "http://localhost:8081/"
+};
 
-const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://weisman:1234@cluster0.0czqaho.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
-client.connect(err => {
-    const collection = client.db("test").collection("devices");
+mongoose.connect('mongodb+srv://weisman:1234@cluster0.0czqaho.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log("Connected to MongoDB");
-    client.close();
+}).catch((err) => {
+    console.log("Error connecting to MongoDB", err);
 });
 
 
-//app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
 app.use(express.json());
