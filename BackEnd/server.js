@@ -25,7 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 // routes
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
-
+require('./routes/client.routes')(app);
+require('./routes/distributor.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 5050;
