@@ -28,5 +28,4 @@ module.exports = function (app) {
     router.delete("/:id", distributors.delete);
     
     app.use('/api/distributors', router);
-    console.log("distributors.routes.js: router.delete");
 };
