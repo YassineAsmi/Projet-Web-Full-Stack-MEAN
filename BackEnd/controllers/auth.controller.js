@@ -5,6 +5,7 @@ const Role = db.role;
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcrypt");
+const { user } = require("../models");
 
 exports.signup = (req, res) => {
     const user = new User({
@@ -28,8 +29,8 @@ exports.signup = (req, res) => {
                         res.status(500).send({ message: err });
                         return;
                     }
-
                     user.roles = roles.map((role) => role._id);
+                    console.log(user.roles)
                     user.save((err) => {
                         if (err) {
                             res.status(500).send({ message: err });
@@ -47,7 +48,7 @@ exports.signup = (req, res) => {
                     return;
                 }
 
-              //  user.roles = [role._id];
+                user.roles = [role._id];
                 user.save((err) => {
                     if (err) {
                         res.status(500).send({ message: err });
@@ -86,11 +87,11 @@ exports.signin = (req, res) => {
                 return res.status(401).send({ message: "Invalid Password!" });
             }
 
-            var token = jwt.sign({ id: user.id }, config.secret, {
+            var token = jwt.sign({ id: user.id, roles: user.roles }, config.secret, {
                 expiresIn: 86400, // 24 hours
             });
 
-        /*    var authorities = [];
+            /*    var authorities = [];
 
             for (let i = 0; i < user.roles.length; i++) {
                 authorities.push("ROLE_" + user.roles[i].name.toUpperCase());
@@ -101,8 +102,10 @@ exports.signin = (req, res) => {
             res.status(200).send({
                 id: user._id,
                 username: user.username,
-                email: user.email
-              //  roles: authorities,
+                email: user.email,
+                token: token,
+
+                //  roles: authorities,
             });
         });
 };
@@ -114,4 +117,25 @@ exports.signout = async(req, res) => {
     } catch (err) {
         this.next(err);
     }
+};
+// Delete a Client with the specified id in the request
+exports.delete = (req, res) => {
+    const id = req.query.id;
+    user.findByIdAndRemove(id)
+        .then(data => {
+            if (!data) {
+                res.status(404).send({
+                    message: `Cannot delete user with id=${id}. Maybe user was not found!`
+                });
+            } else {
+                res.send({
+                    message: "user was deleted successfully!"
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Could not delete user with id=" + id
+            });
+        });
 };
