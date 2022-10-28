@@ -28,6 +28,7 @@ require('./routes/user.routes')(app);
 require('./routes/client.routes')(app);
 require('./routes/distributor.routes')(app);
 require('./routes/expenses.routes')(app);
+require('./routes/stocks.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 5050;
