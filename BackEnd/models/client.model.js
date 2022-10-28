@@ -6,6 +6,7 @@ const clients = mongoose.model(
     last_name: String,
     name: String,
     tel: Number,
+    email: String,
     adresse: String
   }, { timestamps: true })
   
