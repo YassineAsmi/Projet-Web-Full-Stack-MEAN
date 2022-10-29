@@ -12,7 +12,7 @@ module.exports = function(app) {
 
     router.get('/count/:count', invoiceController.getTotalCount) // problem
     router.get('/:id', invoiceController.getInvoice)
-    router.get('/user/:name', invoiceController.getInvoicesByUser)
+    router.get('/', invoiceController.getInvoicesByUser)
     router.post('/', invoiceController.createInvoice)
     router.patch('/:id', invoiceController.updateInvoice)
     router.delete('/:id', invoiceController.deleteInvoice)

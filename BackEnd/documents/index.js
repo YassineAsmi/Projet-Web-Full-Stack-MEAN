@@ -160,7 +160,7 @@ img {
   </tr>
 
   ${
-   items.map((item) => (
+   items?.map((item) => (
  `  <tr>
     <td style="font-size: 9px">${item.itemName}</td>
     <td style="font-size: 9px">${item.quantity}</td>

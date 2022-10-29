@@ -3,8 +3,9 @@ const InvoiceModel = require("../models/invoice.model");
 
 
 exports.getInvoicesByUser = async(req, res) => {
-    try {
-        const invoices = await InvoiceModel.find({ creator: req.params.name });
+    try{
+
+        const invoices = await InvoiceModel.find({  }).sort({ _id: -1 })
 
         res.status(200).json({ data: invoices });
     } catch (error) {
@@ -17,7 +18,7 @@ exports.getTotalCount = async(req, res) => {
 
     try {
         // const invoices = await InvoiceModel.find({ creator: searchQuery });
-        const totalCount = await InvoiceModel.countDocuments({ creator: req.parmas.count });
+        const totalCount = await InvoiceModel.find ({creator: searchQuery }).countDocuments()
 
         res.status(200).json(totalCount);
     } catch (error) {
