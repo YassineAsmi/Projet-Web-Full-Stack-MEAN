@@ -5,7 +5,7 @@ const app = express();
 const pdf = require("html-pdf");
 const nodemailer = require('nodemailer');
 const pdfTemplate = require('./documents/index.js')
-// const invoiceTemplate = require('./documents/invoice.js')
+    // const invoiceTemplate = require('./documents/invoice.js')
 const emailTemplate = require('./documents/email.js')
 var corsOptions = {
     origin: "http://localhost:8081/"
@@ -53,6 +53,7 @@ var options = { format: 'A4' };
 //SEND PDF INVOICE VIA EMAIL
 app.post('/send-pdf', (req, res) => {
     const { email, company } = req.body
+    console.log(email, company)
 
     // pdf.create(pdfTemplate(req.body), {}).toFile('invoice.pdf', (err) => {
     pdf.create(pdfTemplate(req.body), options).toFile('invoice.pdf', (err) => {

@@ -13,7 +13,5 @@ module.exports = function(app) {
     router.get('/', stocksController.getstocks)
     router.post('/', stocksController.create);
     router.post('/:id', stocksController.updatstocks)
-
-
     app.use('/api/stocks', router);
 };

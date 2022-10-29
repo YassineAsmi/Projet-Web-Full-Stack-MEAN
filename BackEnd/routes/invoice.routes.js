@@ -1,6 +1,6 @@
 const invoiceController = require('../controllers/invoice.controller');
-module.exports = function (app) {
-    app.use(function (req, res, next) {
+module.exports = function(app) {
+    app.use(function(req, res, next) {
         res.header(
             "Access-Control-Allow-Headers",
             "Origin, Content-Type, Accept"
@@ -10,9 +10,9 @@ module.exports = function (app) {
 
     var router = require("express").Router();
 
-    router.get('/count', invoiceController.getTotalCount) // problem
+    router.get('/count/:count', invoiceController.getTotalCount) // problem
     router.get('/:id', invoiceController.getInvoice)
-    router.get('/', invoiceController.getInvoicesByUser) //not working
+    router.get('/user/:name', invoiceController.getInvoicesByUser)
     router.post('/', invoiceController.createInvoice)
     router.patch('/:id', invoiceController.updateInvoice)
     router.delete('/:id', invoiceController.deleteInvoice)
