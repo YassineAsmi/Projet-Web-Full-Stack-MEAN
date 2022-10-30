@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   // auth views
   {
-    path: "auth",
+    path: "",
     component: AuthComponent,
     children: [
       { path: "login", component: LoginComponent },
@@ -46,7 +46,7 @@ const routes: Routes = [
   // no layout views
   { path: "profile", component: ProfileComponent },
   { path: "landing", component: LandingComponent },
-  { path: "", component: IndexComponent },
+  { path: "index", component: IndexComponent },
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 
