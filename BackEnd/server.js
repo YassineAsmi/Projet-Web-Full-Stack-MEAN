@@ -7,19 +7,17 @@ const nodemailer = require('nodemailer');
 const pdfTemplate = require('./documents/index.js')
     // const invoiceTemplate = require('./documents/invoice.js')
 const emailTemplate = require('./documents/email.js')
-var corsOptions = {
-    origin: "http://localhost:8081/"
-};
-
 mongoose.connect('mongodb+srv://weisman:1234@cluster0.0czqaho.mongodb.net/?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log("Connected to MongoDB");
 }).catch((err) => {
     console.log("Error connecting to MongoDB", err);
 });
+const corsOptions = {
+    origin: 'http://localhost:4200',
+    credentials: true,
 
-
+}
 app.use(cors(corsOptions));
-
 // parse requests of content-type - application/json
 app.use(express.json());
 

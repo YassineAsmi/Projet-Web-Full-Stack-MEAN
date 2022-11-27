@@ -58,6 +58,11 @@ import { HomeComponent } from './views/home/home.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardUserComponent } from './board-user/board-user.component';
+import { ClientsComponent } from './views/admin/clients/clients.component';
+import { DistributorsComponent } from './views/admin/distributors/distributors.component';
+import { StocksComponent } from './views/admin/stocks/stocks.component';
+import { InvoicesComponent } from './views/admin/invoices/invoices.component';
+import { UsersComponent } from './views/admin/users/users.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +104,11 @@ import { BoardUserComponent } from './board-user/board-user.component';
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
+    ClientsComponent,
+    DistributorsComponent,
+    StocksComponent,
+    InvoicesComponent,
+    UsersComponent,
   ],
   imports: [BrowserModule, AppRoutingModule,FormsModule,
     HttpClientModule],
