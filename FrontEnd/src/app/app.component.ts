@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { StorageService } from './_services/storage.service';
-import { AuthService } from './_services/auth.service';
+import { StorageService } from './_Services/storage.service';
+import { AuthService } from './_Services/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html'
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   private roles: string[] = [];
