@@ -118,6 +118,24 @@ exports.signout = async(req, res) => {
         this.next(err);
     }
 };
+//get all users
+
+exports.findAll = (req, res) => {
+    const username = req.query.username;
+    var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
+  
+    Client.find(condition)
+      .then(data => {
+        res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while retrieving username."
+        });
+      });
+  };
+
 // Delete a Client with the specified id in the request
 exports.delete = (req, res) => {
     const id = req.query.id;

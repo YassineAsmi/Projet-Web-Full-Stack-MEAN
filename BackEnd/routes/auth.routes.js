@@ -23,6 +23,6 @@ module.exports = function(app) {
     app.post("/api/auth/signout", controller.signout);
 
     app.delete("/api/auth/delete", controller.delete);
-
+    app.get("/api/auth/getusers", controller.findAll);
 
 };

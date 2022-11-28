@@ -40,4 +40,7 @@ export class AuthService {
   logout(): Observable<any> {
     return this.http.post(AUTH_API + 'signout', { }, httpOptions);
   }
+  gellAllUsers(): Observable<any> {
+    return this.http.get(AUTH_API + 'getusers', { });
+  }
 }

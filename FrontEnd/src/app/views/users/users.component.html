@@ -4,15 +4,65 @@
       <div class="card-body">
         <h4 class="card-title">Availble Users</h4>
         <h5 class="card-subtitle text-muted">Admin Only Privilige</h5>
+        <ng-template #modalAddUser let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Add User</h4>
+                <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="Username">Username</label>
+                        <div class="form-group">
+                            <input
+                                id="Username"
+                                class="form-control"
+                                name="dp"
+                            />
+                            
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Email">Email</label>
+                        <div class="form-group">
+                            <input
+                                id="Email"
+                                class="form-control"
+                                name="dp"
+                            />
+                            
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Password">Password</label>
+                        <div class="form-group">
+                            <input
+                                id="Password"
+                                class="form-control"
+                                name="dp"
+                            />
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="row-md-7">
+                <button class="btn btn-lg btn btn-rounded btn-success" (click)="open(modalAddUser)">Add User</button>
+                <button type="button" class="btn btn-danger btn-rounded" (click)="modal.close('Save click')">Close</button>
+                </div>
+            </div>
+        </ng-template>
+        <button class="btn btn-lg btn btn-rounded btn-success" (click)="open(modalAddUser)">Add User</button>
+
         <div class="table-responsive">
           <table class="table align-middle text-nowrap">
               <thead>
                   <tr>
-                      <th class="text-dark font-medium fs-4">Team Lead</th>
-                      <th class="text-dark font-medium fs-4">Project</th>
-                      <th class="text-dark font-medium fs-4">Status</th>
-                      <th class="text-dark font-medium fs-4">Weeks</th>
-                      <th class="text-dark font-medium fs-4">Budget</th>
+                      <th class="text-dark font-medium fs-4">Username & Email</th>
+                      <th class="text-dark font-medium fs-4">Password</th>
+                      
+
                   </tr>
               </thead>
               <tbody>
@@ -28,14 +78,7 @@
                       </td>
                       <td class="fs-4">{{ts.productName}}</td>
                       <td>
-                          <span class="p-2 bg-{{ts.status}} rounded-circle d-inline-block ms-3"></span>
-                      </td>
-                      
-                      <td>
-                          <h5 class="mb-0 fw-normal">{{ts.weeks}}</h5>
-                      </td>
-                      <td>
-                          <h5 class="mb-0 fw-normal">{{ts.budget}}</h5>
+                        <button class="btn btn-lg btn btn-rounded btn-danger" (click)="deleteUser()">Delete User</button>
                       </td>
                   </tr>              
               </tbody>
