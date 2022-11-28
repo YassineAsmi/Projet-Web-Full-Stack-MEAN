@@ -11,7 +11,14 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class UsersComponent  {
   closeResult = '';
   topSelling:Product[];
-
+  user: any = {
+    username: null,
+    email: null,
+    password: null
+  };
+  isUserAddFailed = false;
+  submitted = false;
+  errorMessage = '';
   trow:TableRows[];
 
   constructor(private authService: AuthService,private modalService: NgbModal) { 
@@ -19,6 +26,29 @@ export class UsersComponent  {
     this.topSelling=TopSelling;
 
     this.trow=Employee;
+  }
+  saveUser(): void {
+    const { username,email, password } = this.user;
+    this.authService.register(username,email,password).subscribe({
+      next: () => {
+        console.log('User created successfully!');
+        this.submitted = true;
+        this.isUserAddFailed = false;
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isUserAddFailed = true;
+      }
+    });
+ 
+  }
+  newUser(): void {
+    this.submitted = false;
+    this.user = {
+      username: null,
+      email: null,
+      password: null
+    };
   }
 addUser(){
  /* this.authService.register(this.form).subscribe(
@@ -37,6 +67,7 @@ open(modalAddUser : any) {
   this.modalService.open(modalAddUser, { ariaLabelledBy: 'modal-basic-title' }).result.then(
     (result) => {
       this.closeResult = `Closed with: ${result}`;
+      this.newUser();
     },
     (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;

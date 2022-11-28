@@ -17,6 +17,7 @@
                             <input
                                 id="Username"
                                 class="form-control"
+                                [(ngModel)]="user.username"
                                 name="dp"
                             />
                             
@@ -28,6 +29,8 @@
                             <input
                                 id="Email"
                                 class="form-control"
+                                [(ngModel)]="user.email"
+                                type="email"
                                 name="dp"
                             />
                             
@@ -39,6 +42,8 @@
                             <input
                                 id="Password"
                                 class="form-control"
+                                [(ngModel)]="user.password"
+                                type="password"
                                 name="dp"
                             />
                             
@@ -48,10 +53,27 @@
             </div>
             <div class="modal-footer">
                 <div class="row-md-7">
-                <button class="btn btn-lg btn btn-rounded btn-success" (click)="open(modalAddUser)">Add User</button>
+                <button class="btn btn-lg btn btn-rounded btn-success" (click)="saveUser()">Add User</button>
                 <button type="button" class="btn btn-danger btn-rounded" (click)="modal.close('Save click')">Close</button>
                 </div>
+                <br>
+                <br>
+                <div  class="justify-center">
+                    <div class="form-group">
+                        <div class=" alert show customize-alert fs-5 alert-success fader" *ngIf="submitted">
+                       User Added successfully!
+                        </div>
+                    </div>
+                </div>
+                <div class="justify-center">
+                    <div class="form-group">
+                        <div class="alert show customize-alert fs-5 alert-danger fader" role="alert" *ngIf="isUserAddFailed">
+                            User Adding failed: {{ errorMessage }}
+                        </div>
+                    </div>
+                </div>
             </div>
+            
         </ng-template>
         <button class="btn btn-lg btn btn-rounded btn-success" (click)="open(modalAddUser)">Add User</button>
 
