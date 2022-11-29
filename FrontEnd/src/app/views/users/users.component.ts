@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Product,TopSelling, TableRows, Employee} from './user-data';
+import { Component, Input, OnInit } from '@angular/core';
+import {User} from './user-data';
 import { AuthService } from '../../_Services/auth.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,23 +10,22 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UsersComponent  {
   closeResult = '';
-  topSelling:Product[];
-  user: any = {
-    username: null,
-    email: null,
-    password: null
-  };
+  currentuser: User = {};
+  user: any = [];
   isUserAddFailed = false;
   submitted = false;
   errorMessage = '';
-  trow:TableRows[];
-
-  constructor(private authService: AuthService,private modalService: NgbModal) { 
-
-    this.topSelling=TopSelling;
-
-    this.trow=Employee;
+  currentIndex = -1;
+  @Input() viewMode = false;
+ @Input() userGet: User = {};
+  constructor(private authService: AuthService,private modalService: NgbModal) { }
+  
+  ngOnInit(): void {
+    if (!this.viewMode) {
+      this.getAllUsers();
+    }   
   }
+  // Add new user
   saveUser(): void {
     const { username,email, password } = this.user;
     this.authService.register(username,email,password).subscribe({
@@ -42,6 +41,8 @@ export class UsersComponent  {
     });
  
   }
+  
+  //initaliaze user field in modal
   newUser(): void {
     this.submitted = false;
     this.user = {
@@ -50,19 +51,43 @@ export class UsersComponent  {
       password: null
     };
   }
-addUser(){
- /* this.authService.register(this.form).subscribe(
-    data => {
-      this.alertService.success('Registration successful', true);
-      this.router.navigate(['/login']);
-    }
-  );
-  */
-}
+  refreshList(): void {
+    this.getAllUsers();
+    this.currentuser = {
+      id:'',
+      username: '',
+      email: '',
+      password: ''
+    };
+    this.currentIndex = -1;
+  }
+  setActiveTutorial(users: User, index: number): void {
+    this.currentuser = users;
+    this.currentIndex = index;
+  }
 deleteUser(){
-  console.log("delete user");
+  this.authService.deleteUser(this.currentuser.id).subscribe({
+    next: (res) => {
+      console.log(res);
+    },
+    error: (e) => console.error(e)
+  });
+}
+//get all users
+getAllUsers() {
+  this.authService.getAllUsers().subscribe({
+    next: data => {
+      this.userGet = data;
+    },
+    error: err => {
+      this.errorMessage = err.error.message;
+      this.isUserAddFailed = true;
+    }
+  });
 }
 
+
+// for modal open
 open(modalAddUser : any) {
   this.modalService.open(modalAddUser, { ariaLabelledBy: 'modal-basic-title' }).result.then(
     (result) => {
@@ -74,7 +99,7 @@ open(modalAddUser : any) {
     },
   );
 }
-
+//for modal dismiss
 private getDismissReason(reason: any): string {
   if (reason === ModalDismissReasons.ESC) {
     return 'by pressing ESC';
@@ -84,4 +109,6 @@ private getDismissReason(reason: any): string {
     return `with: ${reason}`;
   }
 }
+
+
 }

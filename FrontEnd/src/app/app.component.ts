@@ -10,8 +10,8 @@ import { AuthService } from './_Services/auth.service';
 export class AppComponent {
   private roles: string[] = [];
   isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
+ // showAdminBoard = false;
+ // showModeratorBoard = false;
   username?: string;
 
   constructor(private storageService: StorageService, private authService: AuthService) { }
@@ -23,8 +23,8 @@ export class AppComponent {
       const user = this.storageService.getUser();
       this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+    //  this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+     // this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
 
       this.username = user.username;
     }

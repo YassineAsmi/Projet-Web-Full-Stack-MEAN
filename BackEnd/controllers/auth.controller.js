@@ -55,7 +55,7 @@ exports.signup = (req, res) => {
                         return;
                     }
 
-                    res.send({ message: "User was registered successfully!" });
+                    res.send({ message: "User was not registered!" });
                 });
             });
         }
@@ -124,7 +124,7 @@ exports.findAll = (req, res) => {
     const username = req.query.username;
     var condition = username ? { username: { $regex: new RegExp(username), $options: "i" } } : {};
   
-    Client.find(condition)
+    user.find(condition)
       .then(data => {
         res.send(data);
       })
