@@ -3,6 +3,8 @@ import { ROUTES } from './menu-items';
 import { RouteInfo } from './sidebar.metadata';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../_Services/auth.service';
+import { StorageService } from '../../_Services/storage.service';
 //declare var $: any;
 
 @Component({
@@ -25,11 +27,17 @@ export class SidebarComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,private authService: AuthService,private storageService: StorageService
   ) {}
 
   // End open close
   ngOnInit() {
     this.sidebarnavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
+  }
+
+  onLogout() {
+    this.authService.logout();
+    this.storageService.clean();
+    this.router.navigate(['/login']);
   }
 }

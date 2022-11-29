@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
       this.isLoggedIn = true;
       this.router.navigate(['/admin']);
       this.roles = this.storageService.getUser().roles;
+      this.authService.logout();
     }
   }
 
