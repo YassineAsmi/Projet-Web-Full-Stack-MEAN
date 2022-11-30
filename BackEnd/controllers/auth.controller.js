@@ -135,25 +135,41 @@ exports.findAll = (req, res) => {
         });
       });
   };
-
-// Delete a Client with the specified id in the request
+// Find a single user with an id
+exports.findOne = (req, res) => {
+    const id = req.params.id;
+  
+    user.findById(id)
+      .then(data => {
+        if (!data)
+          res.status(404).send({ message: "Not found user with id " + id });
+        else res.send(data);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .send({ message: "Error retrieving user with id=" + id });
+      });
+  };
+// Delete a user with the specified id in the request
 exports.delete = (req, res) => {
-    const id = req.query.id;
+    const id = req.params.id;
+  
     user.findByIdAndRemove(id)
-        .then(data => {
-            if (!data) {
-                res.status(404).send({
-                    message: `Cannot delete user with id=${id}. Maybe user was not found!`
-                });
-            } else {
-                res.send({
-                    message: "user was deleted successfully!"
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: "Could not delete user with id=" + id
-            });
+      .then(data => {
+        if (!data) {
+          res.status(404).send({
+            message: `Cannot delete user with id=${id}. Maybe user was not found!`
+          });
+        } else {
+          res.send({
+            message: "user was deleted successfully!"
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: "Could not delete user with id=" + id
         });
-};
+      });
+  }

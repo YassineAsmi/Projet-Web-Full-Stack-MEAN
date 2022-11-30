@@ -10,7 +10,12 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UsersComponent  {
   closeResult = '';
-  currentuser: User = {};
+  @Input()  currentuser: User = {
+    id: '',
+    username: '',
+    email: '',
+    password: ''
+  };
   user: any = [];
   isUserAddFailed = false;
   submitted = false;
@@ -41,7 +46,7 @@ export class UsersComponent  {
     });
  
   }
-  
+
   //initaliaze user field in modal
   newUser(): void {
     this.submitted = false;
@@ -53,22 +58,20 @@ export class UsersComponent  {
   }
   refreshList(): void {
     this.getAllUsers();
-    this.currentuser = {
-      id:'',
-      username: '',
-      email: '',
-      password: ''
-    };
+    this.currentuser = {};
     this.currentIndex = -1;
   }
   setActiveTutorial(users: User, index: number): void {
     this.currentuser = users;
     this.currentIndex = index;
   }
-deleteUser(){
-  this.authService.deleteUser(this.currentuser.id).subscribe({
+deleteUser(id:any){
+  console.log('this id : '+id);
+  this.authService.deleteUser(id).subscribe({
     next: (res) => {
       console.log(res);
+      this.refreshList();
+      console.log('this id : '+this.currentuser.id);
     },
     error: (e) => console.error(e)
   });
@@ -78,6 +81,7 @@ getAllUsers() {
   this.authService.getAllUsers().subscribe({
     next: data => {
       this.userGet = data;
+      this.currentuser = data;
     },
     error: err => {
       this.errorMessage = err.error.message;

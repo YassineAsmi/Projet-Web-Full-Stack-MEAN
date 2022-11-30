@@ -43,7 +43,10 @@ export class AuthService {
   getAllUsers(): Observable<any> {
     return this.http.get( AUTH_API + 'getusers', httpOptions);
   }
+  getOneUsers(id:any): Observable<any> {
+    return this.http.get(`${AUTH_API+'getOneUser'}/${id}`,httpOptions);
+  }
   deleteUser(id:any):Observable<any>{
-    return this.http.delete( `${AUTH_API+'delete'}/${id}`);
+    return this.http.delete( `${AUTH_API+'delete'}/${id}`,httpOptions);
   }
 }
