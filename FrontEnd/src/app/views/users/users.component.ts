@@ -61,7 +61,7 @@ export class UsersComponent  {
     this.currentuser = {};
     this.currentIndex = -1;
   }
-  setActiveTutorial(users: User, index: number): void {
+  setActiveUser(users: User, index: number): void {
     this.currentuser = users;
     this.currentIndex = index;
   }
@@ -85,7 +85,6 @@ getAllUsers() {
     },
     error: err => {
       this.errorMessage = err.error.message;
-      this.isUserAddFailed = true;
     }
   });
 }

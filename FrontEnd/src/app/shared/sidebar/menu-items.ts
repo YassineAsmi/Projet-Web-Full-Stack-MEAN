@@ -19,7 +19,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/badges',
+    path: '/clients',
     title: 'Clients',
     icon: 'bi bi-patch-check',
     class: '',
