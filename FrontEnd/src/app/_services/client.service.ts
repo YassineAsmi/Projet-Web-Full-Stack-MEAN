@@ -25,7 +25,7 @@ export class ClientService {
   updateClient(id:any, data:any):Observable<any>{
     return this.http.put(`${CLIENT_API}/${id}`,data,httpOptions);
   }
-  createClient(last_name:string,name:string,tel:string,adresse:string):Observable<any>{
-    return this.http.post(CLIENT_API,{last_name,name,tel,adresse},httpOptions);
+  createClient(last_name:string,name:string,tel:string,email:string,address:string):Observable<any>{
+    return this.http.post(CLIENT_API,{last_name,name,tel,email,address},httpOptions);
   }
 }

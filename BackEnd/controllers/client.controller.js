@@ -14,7 +14,8 @@ exports.create = (req, res) => {
       last_name: req.body.last_name,
       name: req.body.name,
       tel: req.body.tel,
-      adresse: req.body.adresse
+      email: req.body.email,
+      address: req.body.address
     });
     // Save Client in the database
     Client
