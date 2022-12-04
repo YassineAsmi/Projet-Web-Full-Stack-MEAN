@@ -27,7 +27,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/buttons',
+    path: '/distributos',
     title: 'Distributors',
     icon: 'bi bi-hdd-stack',
     class: '',

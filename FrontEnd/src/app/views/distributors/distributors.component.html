@@ -1,1 +1,180 @@
-<p>distributors works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Distibutors List</h4>
+                <!-- <h5 class="card-subtitle text-muted">Admin Only Privilige</h5>-->
+                <button class="btn btn-lg btn btn-rounded btn-primary" (click)="open(modalAddDistributor)">Add new
+                    Distributor</button>
+                <ng-template #modalAddDistributor let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Add New Distributor</h4>
+                        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="mb-3">
+                                <label for="name">First Name</label>
+                                <div class="form-group">
+                                    <input id="name" class="form-control" [(ngModel)]="Distributor.name" name="dp" />
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name">Last Name</label>
+                                <div class="form-group">
+                                    <input id="last_name" class="form-control" [(ngModel)]="Distributor.last_name" name="dp" />
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tel">Telephone Number</label>
+                                <div class="form-group">
+                                    <input id="tel" class="form-control" type="number" [(ngModel)]="Distributor.tel" name="dp" />
+
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address">Address</label>
+                                <div class="form-group">
+                                    <textarea id="address" class="form-control" [(ngModel)]="Distributor.addresse" name="dp"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row-md-7">
+                            <button class="btn btn-lg btn btn-rounded btn-success" (click)="saveDistrib()">Add
+                                Distributor</button>
+                            <button type="button" class="btn btn-danger btn-rounded" (click)="modal.close('Save click')">Close</button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="justify-center">
+                            <div class="form-group">
+                                <div class=" alert show customize-alert fs-5 alert-success fader" *ngIf="submitted">
+                                    Distributor Added successfully!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="justify-center">
+                            <div class="form-group">
+                                <div class="alert show customize-alert fs-5 alert-danger fader" role="alert" *ngIf="isDistributorAddFailed">
+                                    Distributor Adding failed
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </ng-template>
+                <ng-template #modalEditDistributor let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Edit Distributor</h4>
+                        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form [formGroup]="editForm">
+                            <div class="mb-3">
+                                <label for="_id">ID</label>
+                                <div class="form-group">
+                                    <input id="_id" class="form-control" [(ngModel)]="DistributorEdit.id" name="_id" formControlName="_id" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="name">First Name</label>
+                                    <div class="form-group">
+                                        <input id="name" class="form-control" [(ngModel)]="DistributorEdit.name" name="dp" formControlName="name" />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="last_name">Last Name</label>
+                                <div class="form-group">
+                                    <input id="last_name" class="form-control" [(ngModel)]="DistributorEdit.last_name" name="last_name" formControlName="last_name" />
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tel">Telephone Number</label>
+                                <div class="form-group">
+                                    <input id="tel" class="form-control" [(ngModel)]="DistributorEdit.tel" type="number" name="tel" formControlName="tel" />
+
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address">Address</label>
+                                <div class="form-group">
+                                    <textarea id="address" class="form-control" [(ngModel)]="DistributorEdit.address" name="address" formControlName="address"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="row-md-7">
+                            <button class="btn btn-lg btn btn-rounded btn-success" (click)="updateDistrib(DistributorEdit._id,DistributorEdit)">Edit
+                                Distributor</button>
+                            <button type="button" class="btn btn-danger btn-rounded" (click)="modal.close('Save click')">Close</button>
+                        </div>
+
+                        <div class="justify-center" *ngIf="submitted">
+                            <div class="form-group">
+                                <div class=" alert show customize-alert fs-5 alert-success fader">
+                                    Distributor Updated successfully!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="justify-center">
+                            <div class="form-group">
+                                <div class="alert show customize-alert fs-5 alert-danger fader" role="alert" *ngIf="isDistributorAddFailed">
+                                    Distibutor Adding failed: {{ errorMessage }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+                <div class="table-responsive">
+                    <table class="table align-middle text-nowrap">
+                        <thead>
+                            <tr>
+                                <!--<th class="text-dark font-medium fs-4">ID</th> -->
+                                <th class="text-dark font-medium fs-4">Name</th>
+                                <th class="text-dark font-medium fs-4">Last Name</th>
+                                <th class="text-dark font-medium fs-4">Phone Number</th>
+                                <th class="text-dark font-medium fs-4">Address</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let ds of distributorGet; let i = index' [class.active]="i == currentIndex" (click)="setActiveDist(Distributor, i)" [currentDistributor]="currentDistributor">
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <!-- <img [src]=ts.image alt="Client" width="45" class="rounded-circle">-->
+                                        <div class="ms-3">
+                                            <h5 id="id" hidden>{{ds.id}}</h5>
+                                            <h5 class="mb-0 font-medium" id="name">{{ds.name}}</h5>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="fs-4">
+                                    <h5 class="mb-0 font-medium" id="last_name">{{ds.last_name}}</h5>
+                                </td>
+                                <td class="fs-4">
+                                    <h5 class="mb-0 font-medium" id="tel">{{ds.tel}}</h5>
+                                </td>
+
+                                <td class="fs-4">
+                                    <h5 class="mb-0 font-medium" id="address">{{ds.address}}</h5>
+                                </td>
+                                <td>
+                                    <button class="btn btn-lg btn btn-rounded btn-success" (click)="openEdit(modalEditDistributor,ds)">Edit</button>
+                                    <button class="btn btn-lg btn btn-rounded btn-danger" (click)="deleteDistrib(ds._id)">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
