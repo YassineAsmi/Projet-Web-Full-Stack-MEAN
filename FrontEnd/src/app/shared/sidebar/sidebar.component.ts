@@ -13,6 +13,7 @@ import { StorageService } from '../../_Services/storage.service';
 })
 export class SidebarComponent implements OnInit {
   showMenu = '';
+  currentUser: any;
   showSubMenu = '';
   public sidebarnavItems:RouteInfo[]=[];
   // this is for the open close
@@ -33,9 +34,9 @@ export class SidebarComponent implements OnInit {
   // End open close
   ngOnInit() {
     this.sidebarnavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
+    this.currentUser = this.storageService.getUser();
   }
   public checkRoles(item:RouteInfo): boolean{
-    console.log('item')
     let  display = true;
     if(item.roles){
       if(item.roles === 'admin'){
@@ -58,7 +59,6 @@ export class SidebarComponent implements OnInit {
     else{
       display = false
     }
-    console.log('display',display,item)
     return display
   }
 

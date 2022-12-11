@@ -12,7 +12,7 @@ export class VerticalSidebarService {
     public screenWidth: any;
     public collapseSidebar: boolean = false;
     public fullScreen: boolean = false;
-
+    
     MENUITEMS: RouteInfo[] = ROUTES;
 
     items = new BehaviorSubject<RouteInfo[]>(this.MENUITEMS);

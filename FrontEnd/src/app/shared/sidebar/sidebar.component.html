@@ -14,6 +14,9 @@
               />
             </b>
         </a>
+        <div style="margin-top: 10%; margin-left: 15%;" *ngIf="currentUser; else loggedOut">
+            <h4>Hello <span><strong style="font-size: 30px;">{{ currentUser.username }}</strong></span></h4> 
+        </div>
         <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title" *ngFor="let sidebarnavItem of sidebarnavItems"
             [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
             <div class="nav-small-cap" *ngIf="sidebarnavItem.extralink === true">{{sidebarnavItem.title}}</div>
@@ -28,4 +31,7 @@
             <button class="btn btn-lg d-block w-100 btn-danger" (click)="onLogout()" >Logout</button>
         </li>
     </ul>
+    <ng-template #loggedOut>
+  Please login.
+</ng-template>
 </nav>
