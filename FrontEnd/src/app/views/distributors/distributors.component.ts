@@ -79,6 +79,7 @@ saveDistrib(): void {
       response => {
         console.log(response);
         this.submitted = true;
+        this.getDistibutors();
       },
       error => {
         console.log(error);

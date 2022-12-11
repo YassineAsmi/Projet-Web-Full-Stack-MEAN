@@ -75,8 +75,12 @@
             </div>
             
         </ng-template>
+        <div class="custom-flex">
+         <div>   
         <button class="btn btn-lg btn btn-rounded btn-primary" (click)="open(modalAddUser)">Add User</button>
-        <input class="form-control" type="text" name="search" [(ngModel)]="searchText" size="10%" autocomplete="off" placeholder="Search ">
+        </div>
+        <input class="form-control custom-width" type="text" name="search" [(ngModel)]="searchText" size="10%" autocomplete="off" placeholder="Search ">
+        </div>
         <div class="table-responsive">
           <table class="table align-middle text-nowrap">
               <thead>

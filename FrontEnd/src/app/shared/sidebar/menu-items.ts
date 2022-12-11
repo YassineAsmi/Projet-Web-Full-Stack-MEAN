@@ -16,6 +16,7 @@ export const ROUTES: RouteInfo[] = [
     icon: 'bi bi-bell',
     class: '',
     extralink: false,
+    roles:'admin',
     submenu: []
   },
   {

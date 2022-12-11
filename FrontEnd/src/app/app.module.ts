@@ -33,6 +33,8 @@ import { DistributorsComponent } from './views/distributors/distributors.compone
 import { StocksComponent } from './views/stocks/stocks.component';
 import { InvoicesComponent } from './views/invoices/invoices.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { DashboardModule } from './dashboard/dashboard.module';
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelSpeed: 1,
@@ -54,7 +56,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UsersComponent,
     DistributorsComponent,
     StocksComponent,
-    InvoicesComponent
+    InvoicesComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -67,7 +70,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     Ng2SearchPipeModule,
     RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy' }),
     PerfectScrollbarModule,
+    DashboardModule
   ],
+  exports:[],
   providers: [
     {
       provide: LocationStrategy,

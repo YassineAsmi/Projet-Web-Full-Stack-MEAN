@@ -4,10 +4,12 @@
             <div class="card-body">
                 <h4 class="card-title">Distibutors List</h4>
                 <!-- <h5 class="card-subtitle text-muted">Admin Only Privilige</h5>-->
+                <div class="custom-flex">
                 <button class="btn btn-lg btn btn-rounded btn-primary" (click)="open(modalAddDistributor)">Add new
                     Distributor</button>
-                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" size="10%" autocomplete="off" placeholder="Search ">
-                <ng-template #modalAddDistributor let-modal>
+                    <input class="form-control custom-width" type="text" name="search" [(ngModel)]="searchText" size="10%" autocomplete="off" placeholder="Search ">
+                </div>
+                    <ng-template #modalAddDistributor let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Add New Distributor</h4>
                         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>

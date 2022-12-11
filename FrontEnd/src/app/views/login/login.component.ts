@@ -32,13 +32,15 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(username, password).subscribe({
       next: data => {
-        this.storageService.saveUser(data);
+        if(data){
+          this.storageService.saveUser(data);
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.roles = this.storageService.getUser().roles;
+          this.reloadPage();
+          this.setRoles(data)
+        }
 
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.roles = this.storageService.getUser().roles;
-        this.reloadPage();
-      
       },
       error: err => {
         this.errorMessage = err.error.message;
@@ -46,10 +48,16 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+  private setRoles(data:any):void {
+     const token = this.storageService.getDecodedAccessToken(data?.token)
+     if(token.roles.length > 0){
+      localStorage.setItem('ROLES',token.roles[0]?.name);
+     }
+  }
 
   reloadPage(): void {
    //window.location.reload();
-   
+
    this.router.navigate(['/admin']);
 }
 }

@@ -35,12 +35,13 @@ export class AppComponent {
       next: res => {
         console.log(res);
         this.storageService.clean();
+        localStorage.clear();
       },
       error: err => {
         console.log(err);
       }
     });
-    
+
     window.location.reload();
   }
 }

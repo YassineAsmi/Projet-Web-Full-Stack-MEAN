@@ -12,6 +12,7 @@ import { InvoicesComponent } from './views/invoices/invoices.component';
 import { LoginComponent } from './views/login/login.component';
 import { StocksComponent } from './views/stocks/stocks.component';
 import { UsersComponent } from './views/users/users.component';
+import { RoleGuard } from './_Services/role.guard';
 
 export const Approutes: Routes = [
 
@@ -28,7 +29,7 @@ export const Approutes: Routes = [
     component: FullComponent,
     children: [
       { path: "dashboard", component: DashboardComponent },
-      { path: "users", component: UsersComponent },
+      { path: "users", component: UsersComponent,canActivate:[RoleGuard],data:{roles:'admin'} },
       { path: "clients", component: ClientsComponent },
       { path: "distributos", component: DistributorsComponent },
       { path: "stocks", component: StocksComponent },

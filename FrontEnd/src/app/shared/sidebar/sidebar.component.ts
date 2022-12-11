@@ -34,6 +34,33 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.sidebarnavItems = ROUTES.filter(sidebarnavItem => sidebarnavItem);
   }
+  public checkRoles(item:RouteInfo): boolean{
+    console.log('item')
+    let  display = true;
+    if(item.roles){
+      if(item.roles === 'admin'){
+        if(this.storageService.isAdmin()){
+          display = false
+        }
+        else{
+          display =  true
+        }
+      }
+      else if(item.roles === 'user'){
+        if(this.storageService.isUser()){
+          display = false
+        }
+        else{
+          display = true
+        }
+      }
+    }
+    else{
+      display = false
+    }
+    console.log('display',display,item)
+    return display
+  }
 
   onLogout() {
     this.authService.logout();

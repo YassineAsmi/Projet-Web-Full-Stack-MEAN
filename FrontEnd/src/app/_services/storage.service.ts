@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import jwt_decode from 'jwt-decode';
 const USER_KEY = 'auth-user';
 
 @Injectable({
@@ -33,5 +33,18 @@ export class StorageService {
     }
 
     return false;
+  }
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch(Error) {
+      return null;
+    }
+  }
+  public isAdmin():boolean{
+    return localStorage.getItem('ROLES') === 'admin'
+  }
+  public isUser():boolean{
+    return localStorage.getItem('ROLES') === 'user'
   }
 }

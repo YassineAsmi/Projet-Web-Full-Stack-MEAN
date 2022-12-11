@@ -157,13 +157,11 @@
                         </div>
                     </div>
                 </ng-template>
-                <div class="form-group row">
-                <div class="col-xs-2">
+                <div class="custom-flex">
                 <button class="btn btn-lg btn btn-rounded btn-primary" (click)="open(modalAddClient)">Add
                     Client</button>    
-                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" size="10%" autocomplete="off" placeholder="Search ">
+                    <input class="form-control custom-width" type="text" name="search" [(ngModel)]="searchText" size="10%" autocomplete="off" placeholder="Search ">
                 </div>
-            </div>
                     <div class="table-responsive">
                     <table class="table align-middle text-nowrap">
                         <thead>
