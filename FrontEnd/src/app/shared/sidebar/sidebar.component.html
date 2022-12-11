@@ -1,6 +1,19 @@
 <nav class="sidebar-nav">
     <ul id="sidebarnav">
         <!-- First level menu -->
+        <a class="navbar-brand" href="/" >
+            <!-- Logo icon -->
+            <b class="logo-icon">
+              <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+              <!-- Light Logo icon -->
+              <img
+                src="assets/images/logos/logoicon.png"
+                alt="homepage"
+                class="dark-logo"
+                style='height: 50%; width: 50%;  margin-left: 20%; padding-bottom: auto; object-fit: contain'
+              />
+            </b>
+        </a>
         <li class="sidebar-item" [class.active]="showMenu === sidebarnavItem.title" *ngFor="let sidebarnavItem of sidebarnavItems"
             [routerLinkActive]="sidebarnavItem.submenu.length != 0 ? '' : 'active'">
             <div class="nav-small-cap" *ngIf="sidebarnavItem.extralink === true">{{sidebarnavItem.title}}</div>

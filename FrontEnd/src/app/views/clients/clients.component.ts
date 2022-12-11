@@ -11,6 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ClientsComponent implements OnInit {
   closeResult = '';
+  title = 'Angular Search Using ng2-search-filter';
+  searchText: any;
   submitted = false;
   isClientAddFailed = false;
   errorMessage = '';

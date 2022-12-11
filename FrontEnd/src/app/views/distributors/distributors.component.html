@@ -6,6 +6,7 @@
                 <!-- <h5 class="card-subtitle text-muted">Admin Only Privilige</h5>-->
                 <button class="btn btn-lg btn btn-rounded btn-primary" (click)="open(modalAddDistributor)">Add new
                     Distributor</button>
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" size="10%" autocomplete="off" placeholder="Search ">
                 <ng-template #modalAddDistributor let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Add New Distributor</h4>
@@ -146,7 +147,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor='let ds of distributorGet; let i = index' [class.active]="i == currentIndex" (click)="setActiveDist(Distributor, i)" [currentDistributor]="currentDistributor">
+                            <tr *ngFor='let ds of distributorGet | filter:searchText let i = index' [class.active]="i == currentIndex" (click)="setActiveDist(Distributor, i)" [currentDistributor]="currentDistributor">
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <!-- <img [src]=ts.image alt="Client" width="45" class="rounded-circle">-->

@@ -10,6 +10,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UsersComponent  {
   closeResult = '';
+  title = 'Angular Search Using ng2-search-filter';
+  searchText: any;
   @Input()  currentuser: User = {
     id: '',
     username: '',

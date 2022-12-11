@@ -10,6 +10,8 @@ import { DistributorsService } from '../../_Services/distributors.service';
 })
 export class DistributorsComponent implements OnInit {
   submitted = false;
+  title = 'Angular Search Using ng2-search-filter';
+  searchText: any;
   isDistributorAddFailed = false;
   currentIndex = -1;
   errorMessage = '';

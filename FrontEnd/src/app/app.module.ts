@@ -32,7 +32,7 @@ import { UsersComponent } from './views/users/users.component';
 import { DistributorsComponent } from './views/distributors/distributors.component';
 import { StocksComponent } from './views/stocks/stocks.component';
 import { InvoicesComponent } from './views/invoices/invoices.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelSpeed: 1,
@@ -64,6 +64,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    Ng2SearchPipeModule,
     RouterModule.forRoot(Approutes, { useHash: false, relativeLinkResolution: 'legacy' }),
     PerfectScrollbarModule,
   ],

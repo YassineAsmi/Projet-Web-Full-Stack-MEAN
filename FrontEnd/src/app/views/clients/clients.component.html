@@ -3,6 +3,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Client List</h4>
+            
                 <!-- <h5 class="card-subtitle text-muted">Admin Only Privilige</h5>-->
                 <ng-template #modalAddClient let-modal>
                     <div class="modal-header">
@@ -156,9 +157,14 @@
                         </div>
                     </div>
                 </ng-template>
+                <div class="form-group row">
+                <div class="col-xs-2">
                 <button class="btn btn-lg btn btn-rounded btn-primary" (click)="open(modalAddClient)">Add
-                    Client</button>
-                <div class="table-responsive">
+                    Client</button>    
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" size="10%" autocomplete="off" placeholder="Search ">
+                </div>
+            </div>
+                    <div class="table-responsive">
                     <table class="table align-middle text-nowrap">
                         <thead>
                             <tr>
@@ -172,7 +178,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor='let cl of clientGet; let i = index' [class.active]="i == currentIndex"
+                            <tr *ngFor='let cl of clientGet | filter:searchText let i = index; ' [class.active]="i == currentIndex"
                                 (click)="setActiveClient(client, i)" [currentClient]="currentClient">
                                 <td>
                                     <div class="d-flex align-items-center">

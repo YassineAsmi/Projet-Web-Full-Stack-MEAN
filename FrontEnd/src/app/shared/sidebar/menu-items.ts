@@ -35,7 +35,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/card',
+    path: '/stocks',
     title: 'Stocks',
     icon: 'bi bi-card-text',
     class: '',
@@ -43,7 +43,7 @@ export const ROUTES: RouteInfo[] = [
     submenu: []
   },
   {
-    path: '/component/dropdown',
+    path: '/invoices',
     title: 'Invoices',
     icon: 'bi bi-menu-app',
     class: '',
